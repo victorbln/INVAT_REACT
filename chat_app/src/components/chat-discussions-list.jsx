@@ -1,4 +1,5 @@
 import { ChatDiscussionsContact } from "./chat-discussions-contact";
+import {clsx} from 'clsx';
 
 export function ChatDiscussionsList({ discussions, loadMessages }) {
   const discussionsJSX = discussions.map((discussion) => (
@@ -7,9 +8,7 @@ export function ChatDiscussionsList({ discussions, loadMessages }) {
     className="chat-discussion-list-item"
     >
       <button
-        className={`chat-discussion-list-item-btn ${
-          discussion.isActive ? "is-active" : ""
-        }`}
+        className={clsx('chat-discussion-list-item-btn' , discussion.isActive && 'is-active')}
         onClick={() => {
           loadMessages(discussion.id);
         }}

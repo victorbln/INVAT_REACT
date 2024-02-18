@@ -66,13 +66,13 @@ body {
 
 .chat-controls-btn {
   background-color: transparent;
-  border: 2px solid blue;
+  border: 2px solid gray;
   padding: 5px;
   cursor: pointer;
 }
 
 .chat-controls-btn.is-active {
-  background-color: blue;
+  background-color: gray;
   color: orange;
 }
 
@@ -84,7 +84,6 @@ body {
   border: var(--border-md);
   padding: var(--space-md);
   background-color: gray;
-
   position: absolute;
   top: 35%;
   left: 50%;
@@ -127,13 +126,40 @@ body {
 }
 
 .chat-discussion-list-item-btn:hover {
-  background-color: blue;
+  background-color: gray;
   color: white;
 }
 
 .chat-discussion-list-item-btn.is-active {
-  background-color: blue;
+  background-color: gray;
   color: white;
 }
 
+
+
 /* CHAT DISCUSSION LIST END */
+
+/* CHAT CONTACT LIST START */
+.chat-contact-list{
+  padding: 0;
+  list-style: none;
+}
+
+.chat-contact-list-item{
+  border: 2px solid gray;
+  margin-bottom: 16px;
+  padding:5px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat-contact-list-select{
+  cursor: pointer;
+}
+
+.chat-contact-list-select--active{
+  background-color: gray;
+  color: white;
+}
+
+/* CHAT CONTACT LIST END */

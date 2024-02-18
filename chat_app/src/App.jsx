@@ -9,12 +9,15 @@ import { useState } from "react";
 import { CONTACTS } from "./constants/contacts";
 import { DISCUSSIONS } from "./constants/discussions";
 import { DISCUSSIONS_CONTENT } from "./constants/messages";
+import {USER} from './constants/user';
 
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [contacts] = useState(CONTACTS);
   const [discussions, setDiscussions] = useState(DISCUSSIONS);
   const [messages, setMessages] = useState([]);
+  const [user] = useState(USER);
+  const [activeContact, setActiveContact] = useState(null);
 
   function loadMessages(discussionId) {
     function checkDiscussionId(message) {
@@ -44,12 +47,39 @@ function App() {
     setDiscussions(discussions.map(updateDiscussion));
   }
 
+  function addNewDiscussion() {
+  const newDiscussionId = discussions.length+1;
+
+  const newDiscussion = {
+    id: newDiscussionId,
+    contacts: [
+      {
+        id: user.id,
+        name: user.name,
+      },
+      {
+        id: activeContact.id,
+        name: activeContact.name,
+      },
+      
+    ],
+  };
+
+  const updatedDiscussion = [...discussions, newDiscussion];
+
+  setDiscussions(updatedDiscussion);
+  }
+
+
   return (
     <>
       {isModalVisible && (
         <ChatStartDiscussionModal
           setIsModalVisible={setIsModalVisible}
           contacts={contacts}
+          setActiveContact={setActiveContact}
+          addNewDiscussion={addNewDiscussion}
+          activeContact={activeContact}
         />
       )}
 

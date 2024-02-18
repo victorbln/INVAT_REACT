@@ -1,12 +1,18 @@
 import { ChatContactList } from "./chat-contact-list.jsx";
 import { ChatStartDiscussionButton } from "./chat-start-discussion-button.jsx";
-export function ChatStartDiscussionModal({setIsModalVisible, contacts}) {
+export function ChatStartDiscussionModal({setIsModalVisible, contacts, setActiveContact, addNewDiscussion, activeContact}) {
   return (
     <div className="chat-start-discussion-modal">
       <ChatContactList 
       contacts={contacts}
+      setActiveContact={setActiveContact}
+      activeContact={activeContact}
       />
-      <ChatStartDiscussionButton />
+      <ChatStartDiscussionButton 
+      addNewDiscussion={addNewDiscussion}
+      setIsModalVisible={setIsModalVisible}
+
+      />
       <button
       className="chat-start-discussion-modal-close-btn"
       onClick={() => {

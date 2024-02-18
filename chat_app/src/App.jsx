@@ -4,17 +4,17 @@ import { ChatLayout } from "./components/chat-layout";
 import { ChatDiscussionsList } from "./components/chat-discussions-list";
 import { ChatMessageList } from "./components/chat-message-list";
 import { ChatStartDiscussionModal } from "./components/chat-start-discussion-modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { CONTACTS } from "./constants/contacts";
-import { DISCUSSIONS } from "./constants/discussions";
 import { DISCUSSIONS_CONTENT } from "./constants/messages";
-import {USER} from './constants/user';
+import { USER } from "./constants/user";
+import { fetchDiscussions } from "./lib/api";
+import { fetchContacts } from "./lib/api";
 
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [contacts] = useState(CONTACTS);
-  const [discussions, setDiscussions] = useState(DISCUSSIONS);
+  const [contacts, setContacts] = useState([]);
+  const [discussions, setDiscussions] = useState([]);
   const [messages, setMessages] = useState([]);
   const [user] = useState(USER);
   const [activeContact, setActiveContact] = useState(null);
@@ -48,28 +48,41 @@ function App() {
   }
 
   function addNewDiscussion() {
-  const newDiscussionId = discussions.length+1;
+    const newDiscussionId = discussions.length + 1;
 
-  const newDiscussion = {
-    id: newDiscussionId,
-    contacts: [
-      {
-        id: user.id,
-        name: user.name,
-      },
-      {
-        id: activeContact.id,
-        name: activeContact.name,
-      },
-      
-    ],
-  };
+    const newDiscussion = {
+      id: newDiscussionId,
+      contacts: [
+        {
+          id: user.id,
+          name: user.name,
+        },
+        {
+          id: activeContact.id,
+          name: activeContact.name,
+        },
+      ],
+    };
 
-  const updatedDiscussion = [...discussions, newDiscussion];
+    const updatedDiscussion = [...discussions, newDiscussion];
 
-  setDiscussions(updatedDiscussion);
+    setDiscussions(updatedDiscussion);
   }
 
+  async function loadDiscussions() {
+    const data = await fetchDiscussions()
+    setDiscussions(data)
+  }
+
+  async function loadContacts() {
+    const data = await fetchContacts()
+    setContacts(data)
+  }
+
+  useEffect(() => {
+    loadDiscussions()
+    loadContacts()
+  }, [])
 
   return (
     <>

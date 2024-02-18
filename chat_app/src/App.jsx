@@ -8,10 +8,22 @@ import { useState } from "react";
 
 import { CONTACTS } from "./constants/contacts";
 import { DISCUSSIONS } from "./constants/discussions";
+import { DISCUSSIONS_CONTENT } from "./constants/messages";
+
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [contacts] = useState(CONTACTS);
   const [discussions] = useState(DISCUSSIONS);
+  const [messages,setMessages]=useState([]);
+
+  function loadMessages(discussionId){
+    //testing function for find method
+    function checkDiscussionId(discussionId){
+      return discussionId === discussionId;
+    }
+    setMessages(DISCUSSIONS_CONTENT.find(checkDiscussionId)?.messages);
+  }
+
   return (
     <>
       {isModalVisible && (
@@ -28,10 +40,17 @@ function App() {
             isModalVisible={isModalVisible}
           />
         }
+
+
         aside={<ChatDiscussionsList 
         discussions={discussions}
+        loadMessages={loadMessages}
         />}
-        main={<ChatMessageList />}
+
+
+        main={<ChatMessageList 
+        messages={messages}
+        />}
       />
     </>
   );

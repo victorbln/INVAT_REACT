@@ -7,15 +7,6 @@ export function ChatControls({ setIsModalVisible, isModalVisible }) {
           setIsModalVisible((prev) => !prev);
         }}
       >
-        Toggle Modal
-      </button>
-
-      <button
-        className={`chat-controls-btn ${isModalVisible ? "is-active" : ""}`}
-        onClick={() => {
-          setIsModalVisible((prev) => !prev);
-        }}
-      >
         Show Modal
       </button>
 
@@ -26,6 +17,15 @@ export function ChatControls({ setIsModalVisible, isModalVisible }) {
         }}
       >
         Hide Modal
+      </button>
+
+      <button
+        className={`chat-controls-btn ${isModalVisible ? "is-active" : ""}`}
+        onClick={() => {
+          setIsModalVisible((prev) => !prev);
+        }}
+      >
+        Toggle Modal
       </button>
     </div>
   );

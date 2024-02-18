@@ -1,7 +1,9 @@
-export function ChatMessage() {
+export function ChatMessage({ message }) {
   return (
     <div>
-      <h3>Chat Message</h3>
+      <p>{message.value}</p>
+      <p>{message.date}</p>
+      <p>{message.author}</p>
     </div>
-  )
+  );
 }

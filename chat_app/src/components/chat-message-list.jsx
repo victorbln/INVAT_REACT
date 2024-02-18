@@ -1,7 +1,12 @@
-export function ChatMessageList() {
+import { ChatMessage } from "./chat-message";
+
+export function ChatMessageList({ messages }) {
   return (
     <div>
-      <h3>Chat Message List</h3>
+      {messages.map((message) => (
+        <ChatMessage message={message} />
+      ))}  
+      
     </div>
   )
 }

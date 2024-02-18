@@ -1,4 +1,4 @@
-export const MESSAGES = [
+export const DISCUSSIONS_CONTENT = [
   {
     id: 0,
     discussionId: 0,
@@ -25,8 +25,32 @@ export const MESSAGES = [
         id: 3,
         value: "I'm fine too",
         date: "Tue 23 Jan, 15:53",
-        author : "John Doe",
-      }
+        author: "John Doe",
+      },
+    ],
+  },
+  {
+    id: 1,
+    discussionId: 1,
+    messages: [
+      {
+        id: 0,
+        value: "Hello, how are you?",
+        date: "Tue 23 Jan, 15:50",
+        author: "Sarah Miller",
+      },
+      {
+        id: 1,
+        value: "I'm fine, thank you",
+        date: "Tue 23 Jan, 15:51",
+        author: "Jane Smith",
+      },
+      {
+        id: 2,
+        value: "What about you?",
+        date: "Tue 23 Jan, 15:52",
+        author: "Jane Smith",
+      },
     ],
   },
 ];

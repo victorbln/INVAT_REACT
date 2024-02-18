@@ -4,7 +4,10 @@ export function ChatMessageList({ messages }) {
   return (
     <div>
       {messages.map((message) => (
-        <ChatMessage message={message} />
+        <ChatMessage 
+        key={message.id} 
+        message={message} 
+        />
       ))}  
       
     </div>

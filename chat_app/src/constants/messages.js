@@ -5,27 +5,15 @@ export const DISCUSSIONS_CONTENT = [
     messages: [
       {
         id: 0,
-        value: "Hello, how are you?",
+        value: "Salut Ce mai faci?",
         date: "Tue 23 Jan, 15:50",
         author: "John Doe",
       },
       {
         id: 1,
-        value: "I'm fine, thank you",
-        date: "Tue 23 Jan, 15:51",
-        author: "Emily Davis",
-      },
-      {
-        id: 2,
-        value: "What about you?",
+        value: "Hey, bine, uite ma uitam la un film,  la tine cum e?",
         date: "Tue 23 Jan, 15:52",
         author: "Emily Davis",
-      },
-      {
-        id: 3,
-        value: "I'm fine too",
-        date: "Tue 23 Jan, 15:53",
-        author: "John Doe",
       },
     ],
   },
@@ -35,21 +23,15 @@ export const DISCUSSIONS_CONTENT = [
     messages: [
       {
         id: 0,
-        value: "Hello, how are you?",
-        date: "Tue 23 Jan, 15:50",
+        value: "Salut Emily, Ce mai faci?",
+        date: "Tue 23 Jan, 16:50",
         author: "Sarah Miller",
       },
       {
         id: 1,
-        value: "I'm fine, thank you",
-        date: "Tue 23 Jan, 15:51",
-        author: "Jane Smith",
-      },
-      {
-        id: 2,
-        value: "What about you?",
-        date: "Tue 23 Jan, 15:52",
-        author: "Jane Smith",
+        value: "Hey Sarah, bine, uite ma uitam la un film, la tine cum e?",
+        date: "Tue 23 Jan, 16:52",
+        author: "Emily Davis",
       },
     ],
   },

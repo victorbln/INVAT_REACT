@@ -128,7 +128,12 @@ body {
 
 .chat-discussion-list-item-btn:hover {
   background-color: blue;
-  color:white
+  color: white;
+}
+
+.chat-discussion-list-item-btn.is-active {
+  background-color: blue;
+  color: white;
 }
 
 /* CHAT DISCUSSION LIST END */

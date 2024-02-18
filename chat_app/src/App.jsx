@@ -13,15 +13,35 @@ import { DISCUSSIONS_CONTENT } from "./constants/messages";
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [contacts] = useState(CONTACTS);
-  const [discussions] = useState(DISCUSSIONS);
-  const [messages,setMessages]=useState([]);
+  const [discussions, setDiscussions] = useState(DISCUSSIONS);
+  const [messages, setMessages] = useState([]);
 
-  function loadMessages(discussionId){
-    //testing function for find method
-    function checkDiscussionId(discussionId){
-      return discussionId === discussionId;
+  function loadMessages(discussionId) {
+    function checkDiscussionId(message) {
+      return message.discussionId === discussionId;
     }
-    setMessages(DISCUSSIONS_CONTENT.find(checkDiscussionId)?.messages);
+
+    const data = DISCUSSIONS_CONTENT.find(checkDiscussionId);
+
+    setMessages(data?.messages);
+    highlightActiveDiscussion(discussionId);
+  }
+
+  function highlightActiveDiscussion(discussionId) {
+    function checkDiscussionId(discussion) {
+      return discussion.id === discussionId;
+    }
+
+    const activeDiscussion = discussions.find(checkDiscussionId);
+
+    function updateDiscussion(discussion) {
+      return {
+        ...discussion,
+        isActive: discussion.id === activeDiscussion.id,
+      };
+    }
+
+    setDiscussions(discussions.map(updateDiscussion));
   }
 
   return (
@@ -40,17 +60,13 @@ function App() {
             isModalVisible={isModalVisible}
           />
         }
-
-
-        aside={<ChatDiscussionsList 
-        discussions={discussions}
-        loadMessages={loadMessages}
-        />}
-
-
-        main={<ChatMessageList 
-        messages={messages}
-        />}
+        aside={
+          <ChatDiscussionsList
+            discussions={discussions}
+            loadMessages={loadMessages}
+          />
+        }
+        main={<ChatMessageList messages={messages} />}
       />
     </>
   );

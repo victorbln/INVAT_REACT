@@ -6,10 +6,10 @@ import { ChatMessageList } from "./components/chat-message-list";
 import { ChatStartDiscussionModal } from "./components/chat-start-discussion-modal";
 import { useEffect, useState } from "react";
 
-import { DISCUSSIONS_CONTENT } from "./constants/messages";
 import { USER } from "./constants/user";
 import { fetchDiscussions } from "./lib/api";
 import { fetchContacts } from "./lib/api";
+import { fetchMessages } from "./lib/api";
 
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -19,14 +19,9 @@ function App() {
   const [user] = useState(USER);
   const [activeContact, setActiveContact] = useState(null);
 
-  function loadMessages(discussionId) {
-    function checkDiscussionId(message) {
-      return message.discussionId === discussionId;
-    }
-
-    const data = DISCUSSIONS_CONTENT.find(checkDiscussionId);
-
-    setMessages(data?.messages);
+  async function loadMessages(discussionId) {
+    const data = await fetchMessages(discussionId);
+    setMessages(data);
     highlightActiveDiscussion(discussionId);
   }
 
@@ -70,19 +65,19 @@ function App() {
   }
 
   async function loadDiscussions() {
-    const data = await fetchDiscussions()
-    setDiscussions(data)
+    const data = await fetchDiscussions();
+    setDiscussions(data);
   }
 
   async function loadContacts() {
-    const data = await fetchContacts()
-    setContacts(data)
+    const data = await fetchContacts();
+    setContacts(data);
   }
 
   useEffect(() => {
-    loadDiscussions()
-    loadContacts()
-  }, [])
+    loadDiscussions();
+    loadContacts();
+  }, []);
 
   return (
     <>

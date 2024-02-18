@@ -12,13 +12,14 @@ export function ChatProvider({ children }) {
   const [activeContact, setActiveContact] = useState(null);
 
   const { contacts } = useContacts();
-  const { discussions, setDiscussions } = useDiscussion();
-  const {
-    messages,
-    addNewDiscussion,
-    loadMessages,
-    highlightActiveDiscussion,
-  } = useMessages(discussions, user, activeContact, setDiscussions);
+  const { discussions, setDiscussions, addNewDiscussion } = useDiscussion({
+    user,
+    activeContact,
+  });
+  const { messages, loadMessages, highlightActiveDiscussion } = useMessages(
+    discussions,
+    setDiscussions
+  );
 
   return (
     <ChatContext.Provider

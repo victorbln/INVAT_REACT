@@ -3,6 +3,7 @@ import { ChatMessage } from "./chat-message";
 
 export function ChatMessageList() {
   const { messages } = useChatContext();
+  
   return (
     <div>
       {messages?.map((message) => (

@@ -26,31 +26,10 @@ export function useMessages(discussions, setDiscussions, user, activeContact) {
     setDiscussions(discussions.map(updateDiscussion));
   }
 
-  function addNewDiscussion() {
-    const newDiscussionId = discussions.length + 1;
 
-    const newDiscussion = {
-      id: newDiscussionId,
-      contacts: [
-        {
-          id: user.id,
-          name: user.name,
-        },
-        {
-          id: activeContact.id,
-          name: activeContact.name,
-        },
-      ],
-    };
-
-    const updatedDiscussion = [...discussions, newDiscussion];
-
-    setDiscussions(updatedDiscussion);
-  }
 
   return {
     messages,
-    addNewDiscussion,
     loadMessages,
     highlightActiveDiscussion,
   };

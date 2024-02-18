@@ -3,6 +3,7 @@ import { ChatContact } from "./chat-contact";
 import useChatContext from "../hooks/user-chat-context";
 export function ChatContactList() {
   const { contacts, activeContact, setActiveContact } = useChatContext();
+  
   return (
     <div>
       <h2>My contact list</h2>

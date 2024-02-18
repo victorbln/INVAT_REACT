@@ -7,10 +7,11 @@ import { ChatStartDiscussionModal } from "./components/chat-start-discussion-mod
 import { useState } from "react";
 
 import { CONTACTS } from "./constants/contacts";
-
+import { DISCUSSIONS } from "./constants/discussions";
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [contacts] = useState(CONTACTS);
+  const [discussions] = useState(DISCUSSIONS);
   return (
     <>
       {isModalVisible && (
@@ -27,7 +28,9 @@ function App() {
             isModalVisible={isModalVisible}
           />
         }
-        aside={<ChatDiscussionsList />}
+        aside={<ChatDiscussionsList 
+        discussions={discussions}
+        />}
         main={<ChatMessageList />}
       />
     </>

@@ -81,7 +81,7 @@ body {
 /* CHAT START DISCUSSION MODAL */
 
 .chat-start-discussion-modal {
-  border : var(--border-md);
+  border: var(--border-md);
   padding: var(--space-md);
   background-color: gray;
 
@@ -93,16 +93,42 @@ body {
   width: 100%;
 }
 
-.chat-start-discussion-modal-close-btn{
+.chat-start-discussion-modal-close-btn {
   background-color: transparent;
   border: 2px solid red;
   padding: 5px;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
-.chat-start-discussion-modal-close-btn:hover{
+.chat-start-discussion-modal-close-btn:hover {
   background-color: red;
   color: white;
 }
 
 /* CHAT START DISCUSSION MODAL END */
+
+/* CHAT DISCUSSION LIST START */
+
+.chat-discussion-list-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chat-discussion-list-item {
+  margin-bottom: var(--space-md);
+}
+
+.chat-discussion-list-item-btn {
+  width: 100%;
+  border: 1px solid var(--color-gray);
+  padding: var(--space-sm);
+  cursor: pointer;
+}
+
+.chat-discussion-list-item-btn:hover {
+  background-color: blue;
+  color:white
+}
+
+/* CHAT DISCUSSION LIST END */

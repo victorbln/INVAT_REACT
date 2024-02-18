@@ -18,6 +18,7 @@ body,
 }
 
 body {
+  position: relative;
   margin: 0;
 }
 /* GENERAL END */
@@ -76,3 +77,32 @@ body {
 }
 
 /* CHAT CONTROLS END */
+
+/* CHAT START DISCUSSION MODAL */
+
+.chat-start-discussion-modal {
+  border : var(--border-md);
+  padding: var(--space-md);
+  background-color: white;
+
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  width: 100%;
+}
+
+.chat-start-discussion-modal-close-btn{
+  background-color: transparent;
+  border: 2px solid red;
+  padding: 5px;
+  cursor: pointer; 
+}
+
+.chat-start-discussion-modal-close-btn:hover{
+  background-color: red;
+  color: white;
+}
+
+/* CHAT START DISCUSSION MODAL END */

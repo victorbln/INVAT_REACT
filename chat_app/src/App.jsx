@@ -11,7 +11,9 @@ function App() {
 
   return (
     <>
-      {isModalVisible && <ChatStartDiscussionModal />}
+      {isModalVisible && <ChatStartDiscussionModal 
+      setIsModalVisible={setIsModalVisible}
+      />}
 
       <ChatLayout
         controls={

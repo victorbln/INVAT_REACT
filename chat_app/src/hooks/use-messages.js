@@ -48,5 +48,10 @@ export function useMessages(discussions, setDiscussions, user, activeContact) {
     setDiscussions(updatedDiscussion);
   }
 
-  return { messages, addNewDiscussion, loadMessages };
+  return {
+    messages,
+    addNewDiscussion,
+    loadMessages,
+    highlightActiveDiscussion,
+  };
 }

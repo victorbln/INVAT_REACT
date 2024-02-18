@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import { ChatContact } from "./chat-contact";
-export function ChatContactList({ contacts, setActiveContact, activeContact }) {
+import useChatContext from "../hooks/user-chat-context";
+export function ChatContactList() {
+  const { contacts, activeContact, setActiveContact } = useChatContext();
   return (
     <div>
       <h2>My contact list</h2>

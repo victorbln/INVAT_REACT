@@ -1,6 +1,9 @@
 import { clsx } from "clsx";
+import useChatContext from "../hooks/user-chat-context";
 
-export function ChatControls({ setIsModalVisible, isModalVisible }) {
+export function ChatControls() {
+  const { setIsModalVisible, isModalVisible } = useChatContext();
+
   return (
     <div className="chat-controls">
       <button

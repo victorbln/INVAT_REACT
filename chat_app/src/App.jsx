@@ -7,14 +7,14 @@ import { ChatStartDiscussionModal } from "./components/chat-start-discussion-mod
 import { useState } from "react";
 
 function App() {
-  const [isModalVisible, setIsModalVisible] = useState(true);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   return (
     <>
       {isModalVisible && <ChatStartDiscussionModal />}
 
       <ChatLayout
-        controls={<ChatControls />}
+        controls={<ChatControls setIsModalVisible={setIsModalVisible} />}
         aside={<ChatDiscussionsList />}
         main={<ChatMessageList />}
       />

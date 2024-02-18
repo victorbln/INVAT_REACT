@@ -1,21 +1,21 @@
-import { ChatContact } from './components/chat-contact' 
-import { ChatMessage } from './components/chat-message'
-import { ChatContactList } from './components/chat-contact-list'
-import { ChatMessageList } from './components/chat-message-list'
-import { ChatDiscussionsContact } from './components/chat-discussions-contact'
 import { ChatControls } from './components/chat-controls'
 import './App.css'
+import { ChatLayout } from './components/chat-layout'
+import { ChatDiscussionsList } from './components/chat-discussions-list'
+import { ChatMessageList } from './components/chat-message-list'
+import { ChatStartDiscussionModal } from './components/chat-start-discussion-modal'
 
 function App() {
 
   return (
     <>
-    <ChatContact />
-    <ChatMessage />
-    <ChatContactList />
-    <ChatMessageList />
-    <ChatDiscussionsContact />
-    <ChatControls />
+   {true && <ChatStartDiscussionModal/>}
+
+    <ChatLayout 
+      controls={<ChatControls/>}
+      aside={<ChatDiscussionsList/>}
+      main={<ChatMessageList/>}
+      />
     </>
   )
 }

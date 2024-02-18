@@ -1,7 +1,13 @@
-export function ChatContactList() {
+import { ChatContact } from "./chat-contact";
+export function ChatContactList({ contacts }) {
   return (
     <div>
-      <h3>Chat Contact List</h3>
+      <ul>
+        {
+        contacts.map((contact) => (
+          <ChatContact key={contact.id} contact={contact} />
+        ))}
+      </ul>
     </div>
-  )
+  );
 }

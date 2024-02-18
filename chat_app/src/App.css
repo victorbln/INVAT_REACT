@@ -83,7 +83,7 @@ body {
 .chat-start-discussion-modal {
   border : var(--border-md);
   padding: var(--space-md);
-  background-color: white;
+  background-color: gray;
 
   position: absolute;
   top: 35%;

@@ -1,7 +1,7 @@
-export function ChatContact() {
+export function ChatContact({contact}) {
   return (
     <div>
-      <h3>Chat Contact</h3>
+      <p>{contact.name}</p>
     </div>
   )
 }

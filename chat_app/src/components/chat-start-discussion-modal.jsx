@@ -1,7 +1,13 @@
 export function ChatStartDiscussionModal() {
   return (
     <div>
-      <h3>Chat Start Discussion Modal</h3>
+      <button
+        onClick={() => {
+          setIsModalVisible(!isModalVisible);
+        }}
+      >
+        Show Modal
+      </button>
     </div>
-  )
+  );
 }

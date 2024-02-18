@@ -1,8 +1,8 @@
-export function ChatControls({ setIsModalVisible }) {
+export function ChatControls({ setIsModalVisible, isModalVisible }) {
   return (
     <div className="chat-controls">
       <button
-        className="chat-controls-btn"
+        className={`chat-controls-btn ${isModalVisible ? "is-active" : ""}`}
         onClick={() => {
           setIsModalVisible((prev) => !prev);
         }}
@@ -11,7 +11,7 @@ export function ChatControls({ setIsModalVisible }) {
       </button>
 
       <button
-        className="chat-controls-btn"
+        className={`chat-controls-btn ${isModalVisible ? "is-active" : ""}`}
         onClick={() => {
           setIsModalVisible((prev) => !prev);
         }}
@@ -20,7 +20,7 @@ export function ChatControls({ setIsModalVisible }) {
       </button>
 
       <button
-        className="chat-controls-btn"
+        className={`chat-controls-btn ${!isModalVisible ? "is-active" : ""}`}
         onClick={() => {
           setIsModalVisible((prev) => !prev);
         }}

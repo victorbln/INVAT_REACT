@@ -59,8 +59,20 @@ body {
 
 /* CHAT CONTROLS START */
 .chat-controls {
+  display: flex;
+  gap: var(--space-md);
 }
 
 .chat-controls-btn {
+  background-color: transparent;
+  border: 2px solid blue;
+  padding: 5px;
+  cursor: pointer;
 }
+
+.chat-controls-btn.is-active {
+  background-color: blue;
+  color: orange;
+}
+
 /* CHAT CONTROLS END */

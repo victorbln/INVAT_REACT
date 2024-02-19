@@ -111,15 +111,17 @@ body {
 .chat-discussion-list-items {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 .chat-discussion-list-item {
   margin-bottom: var(--space-md);
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-md);
 }
 
 .chat-discussion-list-item-btn {
-  width: 100%;
+  width: 80%;
   border: 1px solid var(--color-gray);
   padding: var(--space-sm);
   cursor: pointer;
@@ -135,29 +137,34 @@ body {
   color: white;
 }
 
-
+.chat-discussion-list-item-delete-btn {
+  border: 1px solid var(--color-gray);
+  padding: var(--space-sm);
+  width: 20%;
+  cursor: pointer;
+}
 
 /* CHAT DISCUSSION LIST END */
 
 /* CHAT CONTACT LIST START */
-.chat-contact-list{
+.chat-contact-list {
   padding: 0;
   list-style: none;
 }
 
-.chat-contact-list-item{
+.chat-contact-list-item {
   border: 2px solid black;
   margin-bottom: 16px;
-  padding:5px 15px;
+  padding: 5px 15px;
   display: flex;
   justify-content: space-between;
 }
 
-.chat-contact-list-select{
+.chat-contact-list-select {
   cursor: pointer;
 }
 
-.chat-contact-list-select--active{
+.chat-contact-list-select--active {
   background-color: gray;
   color: white;
 }

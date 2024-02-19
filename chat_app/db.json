@@ -51,32 +51,6 @@
           "name": "Sarah Miller"
         }
       ]
-    },
-    {
-      "id": "3",
-      "contacts": [
-        {
-          "id": 5,
-          "name": "Emily Davis"
-        },
-        {
-          "id": 1,
-          "name": "John Doe"
-        }
-      ]
-    },
-    {
-      "id": "4",
-      "contacts": [
-        {
-          "id": 5,
-          "name": "Emily Davis"
-        },
-        {
-          "id": 2,
-          "name": "Jane Smith"
-        }
-      ]
     }
   ],
   "messages": [

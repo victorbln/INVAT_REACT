@@ -1,33 +1,33 @@
 {
   "contacts": [
     {
-      "id": 1,
+      "id": "1",
       "name": "John Doe"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Jane Smith"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Robert Johnson"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Michael Brown"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Emily Davis"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Sarah Miller"
     }
   ],
   "discussions": [
     {
-      "id": 0,
+      "id": "0",
       "contacts": [
         {
           "id": 0,
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "id": 1,
+      "id": "1",
       "contacts": [
         {
           "id": 0,
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "contacts": [
         {
           "id": 5,
@@ -66,7 +66,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": "4",
       "contacts": [
         {
           "id": 5,
@@ -81,7 +81,7 @@
   ],
   "messages": [
     {
-      "id": 0,
+      "id": "0",
       "discussionId": 0,
       "messages": [
         {
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": 1,
+      "id": "1",
       "discussionId": 1,
       "messages": [
         {

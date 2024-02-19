@@ -32,17 +32,21 @@ export async function fetchMessages(discussionId) {
 }
 
 export async function postDiscussion(payload) {
-  const endpoint = "discussions";
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  };
+  try {
+    const endpoint = "discussions";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    };
 
-  const response = await fetch(`${API_BASE}/${endpoint}`, options);
-  const data = await response.json();
+    const response = await fetch(`${API_BASE}/${endpoint}`, options);
+    const discussion = await response.json();
 
-  return data;
+    return { discussion,error: null};
+  } catch (error) {
+    return { discussion: null, error };
+  }
 }

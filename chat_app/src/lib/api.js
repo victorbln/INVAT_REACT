@@ -1,71 +1,61 @@
-const API_BASE = "http://localhost:3000";
-
-export async function fetchDiscussions() {
-  const endpoint = "discussions";
-
-  const data = await fetch(`${API_BASE}/${endpoint}`);
-  const discussions = await data.json();
-
-  return discussions;
+const API_BASE = 'http://localhost:3000'
+export async function fetchDiscussions(endpoint) {
+  const data = await fetch(`${API_BASE}/${endpoint}`)
+  const discussions = await data.json()
+  return discussions
+}
+export async function fetchContacts(endpoint) {
+  const data = await fetch(`${API_BASE}/${endpoint}`)
+  const contacts = await data.json()
+  return contacts
 }
 
-export async function fetchContacts() {
-  const endpoint = "contacts";
-
-  const data = await fetch(`${API_BASE}/${endpoint}`);
-  const contacts = await data.json();
-
-  return contacts;
-}
-
-export async function fetchMessages(discussionId) {
-  const endpoint = `messages`;
-  const data = await fetch(`${API_BASE}/${endpoint}`);
-  const allMessages = await data.json();
-
-  function checkDiscussionId(message) {
-    return Number(message.discussionId) === Number(discussionId);
-  }
-  const discussionContent = allMessages.find(checkDiscussionId);
-
-  return discussionContent?.messages;
+export async function fetchMessages(endpoint) {
+  const data = await fetch(`${API_BASE}/${endpoint}`)
+  const messages = await data.json()
+  return messages
 }
 
 export async function postDiscussion(payload) {
   try {
-    const endpoint = "discussions";
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const endpoint = 'discussions'
+    const data = await fetch(`${API_BASE}/${endpoint}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
-    };
-
-    const response = await fetch(`${API_BASE}/${endpoint}`, options);
-    const discussion = await response.json();
-
-    return { discussion,error: null};
+    })
+    const discussion = await data.json()
+    return { discussion, error: null }
   } catch (error) {
-    return { discussion: null, error };
+    return { discussion: null, error }
+  }
+}
+export async function deleteDiscussion(discussionId) {
+  try {
+    const endpoint = 'discussions'
+    const data = await fetch(`${API_BASE}/${endpoint}/${discussionId}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    })
+    const discussion = await data.json()
+    return { discussion, error: null }
+  } catch (error) {
+    return { discussion: null, error }
   }
 }
 
-export async function deleteDiscussion(discussionId) {
+export async function postMessage(payload) {
   try {
-    const endpoint = `discussions/${discussionId}`;
-    const options = {
-      method: "DELETE",
-      Headers: {
-        "Content-Type": "application/json",
-      },
-    };
+    const endpoint = 'messages'
+    const data = await fetch(`${API_BASE}/${endpoint}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
 
-    const response = await fetch(`${API_BASE}/${endpoint}`, options);
-    const data = await response.json();
-
-    return { data, error: null };
+    const discussion = await data.json()
+    return { discussion, error: null }
   } catch (error) {
-    return { data: null, error };
+    return { discussion: null, error }
   }
 }

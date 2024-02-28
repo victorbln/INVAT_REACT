@@ -1,21 +1,25 @@
 import { ChatControls } from "./components/chat-controls";
 import "./App.css";
 import { ChatLayout } from "./components/chat-layout";
-import { ChatDiscussionsList } from "./components/chat-discussions-list";
 import { ChatMessageList } from "./components/chat-message-list";
-import { ChatStartDiscussionModal } from "./components/chat-start-discussion-modal";
-import { ChatProvider } from "./store/chat-context";
+import { NextUIProvider } from "@nextui-org/system";
+import { ChatInput } from "./components/chat-input";
+import { ChatDiscussionList } from "./components/chat-discussions-list";
 
 function App() {
   return (
-    <ChatProvider>
-      <ChatStartDiscussionModal />
+    <NextUIProvider>
       <ChatLayout
         controls={<ChatControls />}
-        aside={<ChatDiscussionsList />}
-        main={<ChatMessageList />}
+        aside={<ChatDiscussionList />}
+        main={
+          <>
+            <ChatMessageList />
+            <ChatInput />
+          </>
+        }
       />
-    </ChatProvider>
+    </NextUIProvider>
   );
 }
 

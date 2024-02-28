@@ -6,6 +6,6 @@
     "checkJs": true,
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*.js", "src/**/*.jsx"],
+  "include": ["src/**/*.js", "src/**/*.jsx", "prettier.config.js"],
   "exclude": ["node_modules"]
 }

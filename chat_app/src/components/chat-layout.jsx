@@ -1,12 +1,14 @@
-export function ChatLayout({controls,aside,main}) {
+export function ChatLayout({ controls, aside, main }) {
   return (
-    <div className="chat-layout">
-        <div className="chat-layout-controls">{controls}</div>
+    <div className="p-4 flex flex-col h-full">
+      {controls}
 
-        <div className="chat-layout-content">
-            <div className="chat-layout-aside">{aside}</div>
-            <div className="chat-layout-main">{main}</div>
+      <div className="mt-4 flex flex-col flex-grow padding-4 gap-4 border-2 p-4 lg:flex-row overflow-y-auto">
+        <div className="border-2 p-4 basis-80">{aside}</div>
+        <div className="border-2 p-4 flex-grow flex flex-col overflow-y-auto">
+          {main}
         </div>
+      </div>
     </div>
   )
 }

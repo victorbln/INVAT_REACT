@@ -1,22 +1,23 @@
-import useChatContext from "../hooks/user-chat-context";
-import { ChatMessage } from "./chat-message";
-import useSWR from "swr";
-import { fetchMessages } from "../lib/api";
+import useSWR from 'swr'
+
+import { fetchMessages } from '../lib/api'
+import { ChatMessage } from './chat-message'
 
 export function ChatMessageList() {
-  const { activeDiscussion } = useChatContext();
-
   const { data: messages } = useSWR(
-    () => `messages ${activeDiscussion?.id})`,
-    () => fetchMessages(activeDiscussion?.id),
+    () => `messages`,
+    () => fetchMessages('messages'),
     { dedupingInterval: 10000 }
-  );
+  )
 
   return (
-    <div>
+    <div className="flex-grow overflow-y-auto">
       {messages?.map((message) => (
-        <ChatMessage key={message.id} message={message} />
+        <ChatMessage
+          key={message.id}
+          message={message}
+        />
       ))}
     </div>
-  );
+  )
 }

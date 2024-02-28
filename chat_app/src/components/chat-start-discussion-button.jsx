@@ -1,12 +1,15 @@
-import { useSWRConfig } from "swr";
-import useChatContext from "../hooks/user-chat-context";
-import { postDiscussion } from "../lib/api";
+import { Button } from '@nextui-org/react'
+import { useSWRConfig } from 'swr'
+import { useAtom } from 'jotai'
 
-export function ChatStartDiscussionButton() {
-  const { mutate } = useSWRConfig();
+import { activeContactAtom, userAtom } from '../store/store'
+import { postDiscussion } from '../lib/api'
 
-  const { setIsModalVisible, activeContact, user, setActiveContact } =
-    useChatContext();
+export function ChatStartDiscussionButton({ onCloseModal }) {
+  const [activeContact] = useAtom(activeContactAtom)
+  const [user] = useAtom(userAtom)
+
+  const { mutate } = useSWRConfig()
 
   async function startDiscussion() {
     const payload = {
@@ -14,26 +17,23 @@ export function ChatStartDiscussionButton() {
         { id: activeContact.id, name: activeContact.name },
         { id: user.id, name: user.name },
       ],
-    };
-
-    const { error } = await postDiscussion(payload);
-    if (error) {
-      console.error(error);
-      return;
     }
 
-    mutate("discussions");
-    setIsModalVisible(false);
+    const { error } = await postDiscussion(payload)
+
+    // Show an alert that the post didn't work
+    if (error) return
+
+    mutate('discussions')
+    onCloseModal()
   }
 
   return (
-    <button
-      onClick={() => {
-        startDiscussion();
-        setActiveContact(null);
-      }}
+    <Button
+      color="primary"
+      onPress={startDiscussion}
     >
       Start discussion
-    </button>
-  );
+    </Button>
+  )
 }

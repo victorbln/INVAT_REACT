@@ -1,37 +1,23 @@
-import { clsx } from "clsx";
-import useChatContext from "../hooks/user-chat-context";
+import { Avatar } from "@nextui-org/react";
+import { useAtom } from "jotai";
+import { ChatToggleContacts } from "./chat-toggle-contatcs";
+import { userAtom } from "../store/store";
 
 export function ChatControls() {
-  const { setIsModalVisible, isModalVisible } = useChatContext();
-
+  const [user] = useAtom(userAtom);
+//just a comment
   return (
-    <div className="chat-controls">
-      <button
-        className={clsx("chat-controls-btn", isModalVisible && "is-active")}
-        onClick={() => {
-          setIsModalVisible((prev) => !prev);
-        }}
-      >
-        Show Modal
-      </button>
-
-      <button
-        className={clsx("chat-controls-btn", !isModalVisible && "is-active")}
-        onClick={() => {
-          setIsModalVisible((prev) => !prev);
-        }}
-      >
-        Hide Modal
-      </button>
-
-      <button
-        className={`chat-controls-btn ${isModalVisible ? "is-active" : ""}`}
-        onClick={() => {
-          setIsModalVisible((prev) => !prev);
-        }}
-      >
-        Toggle Modal
-      </button>
-    </div>
+    <header className="flex justify-between items-center rounded-lg bg-gray-100 px-4 py-3">
+      <Avatar 
+      name={user.name}
+      src={user.imageUrl}
+      size="lg"
+      radius="md"
+      />
+      <p>
+        Welcome, <strong>{user.name}</strong>
+      </p>
+      <ChatToggleContacts />
+    </header>
   );
 }

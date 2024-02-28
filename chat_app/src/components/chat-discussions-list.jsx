@@ -1,53 +1,62 @@
-import useSWR, { useSWRConfig } from "swr";
-import useChatContext from "../hooks/user-chat-context";
-import { deleteDiscussion, fetchDiscussions } from "../lib/api";
-import { ChatDiscussionsContact } from "./chat-discussions-contact";
-import { clsx } from "clsx";
-import { AiFillDelete } from "react-icons/ai";
+import { AiFillDelete } from 'react-icons/ai'
+import { clsx } from 'clsx'
+import { useAtom } from 'jotai'
+import useSWR, { mutate } from 'swr'
 
-export function ChatDiscussionsList() {
-  const { setActiveDiscussion, activeDiscussion } = useChatContext();
-  const { mutate } = useSWRConfig();
+import { activeDiscussionAtom } from '../store/store'
+import { deleteDiscussion, fetchDiscussions } from '../lib/api'
+import { ChatDiscussionContacts } from './chat-discussions-contact'
 
-  const { data: discussions } = useSWR("discussions", fetchDiscussions);
 
-  async function handleDeleteDiscussion(discussionId) {
-    const { error } = await deleteDiscussion(discussionId);
+export function ChatDiscussionList() {
+  const [activeDiscussion, setActiveDiscussion] = useAtom(activeDiscussionAtom)
+
+  const { data: discussions } = useSWR('discussions', fetchDiscussions)
+
+  async function handleDeleteDiscussion(id) {
+    const { error } = await deleteDiscussion(id)
+
     if (error) {
-      console.error(error);
-      return;
+      // Poti arata o alerta daca stergerea nu a mers cum trebuie
+      // Dupa dau return ca sa nu se faca mutate inutil
+      return
     }
-    mutate("discussions");
+
+    mutate('discussions')
   }
 
-  const discussionsJSX = discussions?.map((discussion) => (
-    <li key={discussion.id} className="chat-discussion-list-item">
-      <button
-        className={clsx(
-          "chat-discussion-list-item-btn",
-          activeDiscussion?.id === discussion.id && "is-active"
-        )}
-        onClick={() => {
-          setActiveDiscussion(discussion);
-        }}
-      >
-        <ChatDiscussionsContact contacts={discussion.contacts} />
-      </button>
-
-      <button
-        onClick={() => {
-          handleDeleteDiscussion(discussion.id);
-        }}
-        className="chat-discussion-list-item-delete-btn"
-      >
-        <AiFillDelete />
-      </button>
-    </li>
-  ));
-
   return (
-    <div className="chat-discussion-list">
-      <ul className="chat-discussion-list-items">{discussionsJSX}</ul>
+    <div className="">
+      <h3 className="text-xl text-g">My discussions</h3>
+
+      <ul className="">
+        {discussions?.map((discussion) => (
+          <li
+            key={discussion.id}
+            className="flex justify-between items-stretch mt-3 border-1 rounded-md"
+          >
+            <button
+              className={clsx(
+                'flex p-2 hover:bg-gray-100 grow',
+                discussion.id === activeDiscussion?.id && 'bg-blue-200'
+              )}
+              onClick={() => {
+                // @ts-ignore
+                setActiveDiscussion(discussion)
+              }}
+            >
+              <ChatDiscussionContacts contacts={discussion.contacts} />
+            </button>
+
+            <button
+              className="px-4 hover:bg-red-100"
+              onClick={() => handleDeleteDiscussion(discussion.id)}
+            >
+              <AiFillDelete />
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
-  );
+  )
 }

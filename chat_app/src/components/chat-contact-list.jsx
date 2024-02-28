@@ -1,38 +1,75 @@
-import clsx from "clsx";
-import { ChatContact } from "./chat-contact";
-import useChatContext from "../hooks/user-chat-context";
-import useSWR from "swr";
-import { fetchContacts } from "../lib/api";
+import { useAtom } from 'jotai'
+import useSWR from 'swr'
+import {
+  Avatar,
+  RadioGroup,
+  VisuallyHidden,
+  cn,
+  useRadio,
+} from '@nextui-org/react'
 
-export function ChatContactList() {
-  const { activeContact, setActiveContact } = useChatContext();
+import { activeContactAtom } from '../store/store'
+import { fetchContacts } from '../lib/api'
+import { ChatContact } from './chat-contact'
 
-  const { data: contacts } = useSWR("contacts", fetchContacts);
+const CustomRadio = (props) => {
+  const {
+    Component,
+    children,
+    getBaseProps,
+    getWrapperProps,
+    getInputProps,
+    getLabelProps,
+    getLabelWrapperProps,
+    getControlProps,
+  } = useRadio(props)
 
   return (
-    <div>
-      <h2>My contact list</h2>
+    <Component
+      {...getBaseProps()}
+      className={cn(
+        'group inline-flex items-center hover:opacity-70 active:opacity-50 justify-between flex-row-reverse tap-highlight-transparent',
+        'cursor-pointer border-2 border-default rounded-lg gap-4 p-4',
+        'data-[selected=true]:border-primary'
+      )}
+    >
+      <VisuallyHidden>
+        <input {...getInputProps()} />
+      </VisuallyHidden>
 
-      <ul className="chat-contact-list">
-        {contacts?.map((contact) => (
-          <li key={contact.id} className="chat-contact-list-item">
+      <span {...getWrapperProps()}>
+        <span {...getControlProps()} />
+      </span>
+
+      <div {...getLabelWrapperProps()}>
+        {children && <span {...getLabelProps()}>{children}</span>}
+      </div>
+    </Component>
+  )
+}
+
+export function ChatContactList() {
+  const [activeContact, setActiveContact] = useAtom(activeContactAtom)
+  const { data: contacts } = useSWR('contacts', fetchContacts)
+
+  return (
+    <RadioGroup value={activeContact?.name || ''}>
+      {contacts?.map((contact) => (
+        <CustomRadio
+          key={contact.id}
+          value={contact.name}
+          // @ts-ignore
+          onChange={() => setActiveContact(contact)}
+        >
+          <div className="flex items-center gap-4">
+            <Avatar
+              color="default"
+              src={contact.imageUrl}
+            />
             <ChatContact contact={contact} />
-
-            <button
-              onClick={() => {
-                setActiveContact(contact);
-              }}
-              className={clsx(
-                "chat-contact-list-select",
-                contact.id === activeContact?.id &&
-                  "chat-contact-list-select--active"
-              )}
-            >
-              Select
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+          </div>
+        </CustomRadio>
+      ))}
+    </RadioGroup>
+  )
 }
